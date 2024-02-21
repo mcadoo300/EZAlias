@@ -1,0 +1,72 @@
+.TH eza(1)
+
+.SH NAME
+.B eza 
+- manage aliases from the command line
+
+.SH Synopsis
+.B eza
+.RB [ OPTION ]
+.RB [ ALIAS ]
+.RB [ COMMAND ]
+
+.SH DESCRIPTION
+.B eza 
+
+Add/remove/list/edit aliases from the command line. Default rc file is ~/.zshrc.
+
+.SS
+.B
+-a
+.LP
+
+This requires both the [ ALIAS ] and [ COMMAND ] arguments. It will add the alias with the passed command to the end of the rc file.
+
+.SS
+.B
+-am
+.LP
+
+This creates the alias in the same way that -add does. The only difference is that once the alias has been created you will be prompted to fill in a brief man page that will be attached to the new alias. (Ex. if you create an alias named 'test' with -am you will create a man page which can be accessed with 'man test'.)
+
+.SS
+.B
+-r
+.LP
+
+This only accepts an [ ALIAS ]. The passed [ ALIAS ] is removed, if found.
+
+
+.SS
+.B
+-l
+.LP
+
+This will list all aliases in the rc file. 
+
+.SS
+.B
+-cc
+.LP
+
+This requires both [ ALIAS ] and [ COMMAND ] arguments. It will replcae the existing command with the passed command. If no existing alias is found with the [ ALIAS ] name then a new alias will be created (just like -a).
+
+.SH CONFIGURATION 
+.TP
+To change the file location to which aliases are written to modify the file addalias.sh, the default location is ~/.easyalias/addalias.sh. Any other configuation changes can be made on files within the directory ~/.easyalias/. Man pages will be placed in the directory /usr/local/man/man1. There will also be a hard link created so the file can be accessed in the root directory of easyalias.
+
+.SH EXAMPLES
+
+eza -a testalias "echo 'this is a test' "
+
+eza -cc testalias "echo 'now it says this' "
+
+eza -r testalias
+
+eza -l
+
+
+
+
+.SH NOTES
+You may have to open a new shell for the new alias to be accessible.
