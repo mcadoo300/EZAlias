@@ -1,4 +1,4 @@
-### Ez Alias -- A lightweight CLI based alias manager
+# Ez Alias -- A lightweight CLI based alias manager
 ---
 This tool allows you to create, edit, remove, and list aliases from the comfort of your favorite terminal.
 ---
