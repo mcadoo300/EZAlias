@@ -4,7 +4,7 @@
 .B eza 
 - manage aliases from the command line
 
-.SH Synopsis
+.SH SYNOPSIS
 .B eza
 .RB [ OPTION ]
 .RB [ ALIAS ]
