@@ -28,4 +28,4 @@ To edit the command of an existing alias
 # Creating manual pages for your alias
 If you are making an alias that is slightly complicated or calls a custom script this command will allow you create a simple man page that contains the Name, Synposis and Description of your alias.
 
-
+NOTE: This does require sudo privalages. 
