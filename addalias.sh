@@ -24,6 +24,9 @@ elif [[ "$1" == "-a" || "$1" == "-am" ]]; then # add alias
 			else
 				echo "alias $alias_name=\"$command\"" >> $rc
 				echo "alias created: $alias_name=\"$command\""
+				if [[ "$1" == "-am" ]]; then
+					zsh /home/marc/.ezalias/createman.sh $alias_name
+				fi
 			fi
 		else
 			echo "Invalid alias name."

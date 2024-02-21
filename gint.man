@@ -1,0 +1,8 @@
+.TH gint(1) 
+.SH NAME 
+.B gint - 
+init git repo
+.SH SYNOPSIS 
+gint
+.SH DESCRIPTION 
+This is shorthand for initializing a git repo
