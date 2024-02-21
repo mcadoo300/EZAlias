@@ -5,6 +5,7 @@ rc='/home/marc/.zshrc'
 valid_alias='^[a-zA-Z_][a-zA-Z0-9_]*$'
 # valid arg counts for input checking
 add_arg_count=3
+remove_arg_count=2
 arg_count=$#
 # ensure at least one argument was passed
 if [ $# -eq 0 ]; then
@@ -32,7 +33,20 @@ elif [[ "$1" == "-a" || "$1" == "-am" ]]; then # add alias
 	fi
 elif [[ "$1" == "-l" ]]; then # list aliases
 	grep "^alias" $rc
-
+elif [[ "$1" == "-r" ]]; then # remove alias
+	if [ $# -eq $remove_arg_count ]; then
+		local alias_name=$2
+		local exists=$(grep -c "^alias $alias_name=" $rc)
+		if [ $exists -eq 0 ]; then
+			echo "Error: No alias found with that name"
+		else
+			echo "Removed the following alias:"
+			grep "^alias $alias_name=" $rc
+			grep -v "^alias $alias_name=" $rc > temp_file && mv temp_file $rc
+		fi
+	else
+		echo "Erro: Invalid nubmer of arguments passed.\nProper syntax: eza -r [ ALIAS ]"
+	fi
 else
 	echo "Error: Unrecognized arguments."
 fi
