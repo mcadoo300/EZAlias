@@ -11,6 +11,8 @@ In `eza.sh` change the rc variable to the location of your bash read command fil
 `rc=/path/to/.shellrc`
 Since I use zsh and I never changed the default location mine is located at `/home/marc/.zshrc`.
 > Note: It is possible to source aliases from different files. If this is the case you should point rc to wherever you store your aliases.
+
+
 If you would like to also use the manual page for this script, as well as create some of your own, you will need to move (or create a symlink) to the `eza.man` file. This file (eza.man) should be moved to (or a link created in)  `/usr/local/man/man1/eza.1`. 
 Example: `sudo ln eza.man /usr/local/man/man1/eza.1`
 
