@@ -16,7 +16,6 @@ elif [[ "$1" == "-a" || "$1" == "-am" ]]; then # add alias
 		if [[ $alias_name =~ $valid_alias ]]; then
 
 			local exists=$(grep -c "^alias $alias_name=" $rc)
-			echo "$exists"
 			if [ $exists -ne 0 ]; then
 				echo "Error: An alias with that name already exists:"
 				grep "^alias $alias_name=" $rc
@@ -31,6 +30,9 @@ elif [[ "$1" == "-a" || "$1" == "-am" ]]; then # add alias
 	else
 		echo "Error: Invalid number of arguments passed.\nProper syntax: eza -a [ ALIAS ] [ COMMAND ]"
 	fi
+elif [[ "$1" == "-l" ]]; then # list aliases
+	grep "^alias" $rc
+
 else
 	echo "Error: Unrecognized arguments."
 fi
