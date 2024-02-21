@@ -1,7 +1,7 @@
 # Ez Alias -- A lightweight CLI based alias manager
----
+
 This tool allows you to create, edit, remove, and list aliases from the comfort of your favorite terminal.
----
+
 ## Installation 
 You will want to clone this repo and place it wherever you find it convenient.
 `git clone https://github.com/mcadoo300/EZAlias.git`
