@@ -1,3 +1,0 @@
-.TH gadd(1) 
-.SH NAME 
-.B gadd - 
