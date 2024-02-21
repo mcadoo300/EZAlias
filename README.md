@@ -28,14 +28,12 @@ To list aliases you can use the command `eza -l`. This goes into your bashrc fil
 To remove aliases use the command `eza -r alianName`.
 ## Editing existing aliases
 To **C**hange the **C**ommand of an existing alias use the command `eza -cc aliasToEdit "new command"`
-# Creating manual pages for your alias
+## Creating manual pages for your alias
 If you are making an alias that is slightly complicated, calls a custom function, have a terrible memory like I do, or are making an alias that is slightly complicated you can use the command `eza -am yourAlias "your command"`.
 This functions the same as the basic `-a` command. But at the end you will be prompted to fill in 3 sections of a manual page: 1. NAME 2.SYNOPSIS 3. DESCRIPTION .
 > Note: This requires sudo permission.
 
 A manual page will be added by default to `/usr/local/man/man1/yourAlias.1` **AND A HARD LINK** to the file will be created in the directory in which you cloned this repo (but with the file extension .man). Editing either of these files will require sudo permission. Once this is complete you can access the description of your alias by using the command `man yourAlias`.
-
-> NOTE: This does require sudo privileges.
 
 [This link](https://man7.org/linux/man-pages/man7/man-pages.7.html) provided above also details what should be in which section of the `.../man/` directory. If you wish to follow standard conventions or if you wish to edit the manual page to include more information such as configuration, notes, etc. it may be useful.
 
