@@ -49,7 +49,7 @@ elif [[ "$1" == "-r" ]]; then # remove alias
 			grep -v "^alias $alias_name=" $rc > temp_file && mv temp_file $rc
 		fi
 	else
-		echo "Error: Invalid nubmer of arguments passed.\nProper syntax: eza -r [ ALIAS ]"
+		echo "Error: Invalid number of arguments passed.\nProper syntax: eza -r [ ALIAS ]"
 	fi
 elif [[ "$1" == "-cc" ]]; then # change command
 	if [ $# -eq $edit_command_arg_count ]; then
