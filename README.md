@@ -6,10 +6,9 @@ This tool allows you to create, edit, remove, and list aliases from the comfort 
 You will want to clone this repo and place it wherever you find it convenient.
 `git clone https://github.com/mcadoo300/EZAlias.git`
 ## Configuration
-You will need to change some file pathing.
-In `eza.sh` change the rc variable to the location of your bash read command file.
-`rc=/path/to/.shellrc`
-Since I use zsh and I never changed the default location mine is located at `/home/marc/.zshrc`.
+You may need to change some file pathing depending on how you organize your aliases or depending on your shell.
+In `eza.sh` change the rc variable to point to the location of your aliases. By default the vairable is set to point at your `$HOME` directory and is set up for a z shell:
+`rc="$HOME/.zshrc"`
 > Note: It is possible to source aliases from different files. If this is the case you should point rc to wherever you store your aliases.
 
 

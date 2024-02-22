@@ -1,6 +1,6 @@
 #!/bin/zsh
 # directory were you keep your bash aliases
-rc='/home/marc/.zshrc'
+rc="$HOME/.zshrc"
 # regex for validating alias name
 valid_alias='^[a-zA-Z_][a-zA-Z0-9_]*$'
 # valid arg counts for input checking
@@ -49,7 +49,7 @@ elif [[ "$1" == "-r" ]]; then # remove alias
 			grep -v "^alias $alias_name=" $rc > temp_file && mv temp_file $rc
 		fi
 	else
-		echo "Erro: Invalid nubmer of arguments passed.\nProper syntax: eza -r [ ALIAS ]"
+		echo "Error: Invalid nubmer of arguments passed.\nProper syntax: eza -r [ ALIAS ]"
 	fi
 elif [[ "$1" == "-cc" ]]; then # change command
 	if [ $# -eq $edit_command_arg_count ]; then
