@@ -17,8 +17,8 @@ sudo echo ".SH DESCRIPTION " >> $1.man
 echo "Enter a description of how to use your alias."
 read desc
 sudo echo "$desc" >> $1.man
-
-sudo ln ./$1.man /usr/local/man/man1/$1.1
+sudo mv ./$1.man $HOME/ezalias/$1.man
+sudo ln $HOME/ezalias/$1.man /usr/local/man/man1/$1.1
 
 echo "You may now access your manual page by entering 'man $1'"
 
