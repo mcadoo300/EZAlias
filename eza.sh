@@ -1,9 +1,9 @@
 #!/bin/zsh
 # directory where you keep your bash aliases
-rc="$HOME/.zshrc"
+#rc="$HOME/.zshrc"
 src1="$HOME/.zshrc"
 src2="$HOME/aliases/aliases_git"
-src_list=( $src1 $src2 )
+src_list=( $src1 )
 
 
 # regex for validating alias name
@@ -18,9 +18,13 @@ if [ $# -eq 0 ]; then
 	echo "Error: No arguments were passed.\nExample: eza -a test \"echo 'this is a test' \" "
 elif [[ "$1" == "-a" || "$1" == "-am" ]]; then # add alias
 	if [ $# -eq $add_arg_count ]; then
-
-
-
+		# get alias source file
+		if [ ${#src_list[@]} -eq 1 ]; then
+			local rc=${src_list[@]} # bash and zsh have different indexing so @ is used
+			echo $rc
+		else
+			echo "To do"
+		fi
 		local alias_name=$2
 		local command=$3
 		if [[ $alias_name =~ $valid_alias ]]; then
@@ -52,6 +56,13 @@ elif [[ "$1" == "-l" ]]; then # list aliases
 	done
 elif [[ "$1" == "-r" ]]; then # remove alias
 	if [ $# -eq $remove_arg_count ]; then
+		# get alias source file
+		if [ ${#src_list[@]} -eq 1 ]; then
+			local rc=${src_list[@]} # bash and zsh have different indexing so @ is used
+			echo $rc
+		else
+			echo "To do"
+		fi
 		local alias_name=$2
 		local exists=$(grep -c "^alias $alias_name=" $rc)
 		if [ $exists -eq 0 ]; then
