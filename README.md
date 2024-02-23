@@ -24,7 +24,7 @@ You may also have to change the directory of the 'createman.sh' script within th
 
 `29: fi`
 
->Note: The default location is `$HOME/.ezalias/createman.sh`.
+>Note: The default location is `$HOME/ezalias/createman.sh`.
 
 
 > Note: The .man extension was an organizational decision and more info can be found under the 'Creating manual pages for your aliases' section. You may find that different aliases have different functionality and not all man pages go exactly into man1. For more information on standardized man page organization [you can refer to this page](https://man7.org/linux/man-pages/man7/man-pages.7.html).
