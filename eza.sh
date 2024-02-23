@@ -3,7 +3,7 @@
 #rc="$HOME/.zshrc"
 src1="$HOME/.zshrc"
 src2="$HOME/aliases/aliases_git"
-src_list=( $src1 )
+src_list=( $src1 $src2 )
 
 
 # regex for validating alias name
@@ -23,7 +23,14 @@ elif [[ "$1" == "-a" || "$1" == "-am" ]]; then # add alias
 			local rc=${src_list[@]} # bash and zsh have different indexing so @ is used
 			echo $rc
 		else
-			echo "To do"
+			echo "Input file would you like to add the alias to?"
+			for (( i = 1; i <= ${#src_list[@]}; i++))
+			do
+				echo -n "${src_list[i]}\t"
+			done
+			echo "\n"
+			read rc
+
 		fi
 		local alias_name=$2
 		local command=$3
@@ -57,11 +64,19 @@ elif [[ "$1" == "-l" ]]; then # list aliases
 elif [[ "$1" == "-r" ]]; then # remove alias
 	if [ $# -eq $remove_arg_count ]; then
 		# get alias source file
+		# get alias source file
 		if [ ${#src_list[@]} -eq 1 ]; then
 			local rc=${src_list[@]} # bash and zsh have different indexing so @ is used
 			echo $rc
 		else
-			echo "To do"
+			echo "Input file would you like to remove the alias from?"
+			for (( i = 1; i <= ${#src_list[@]}; i++))
+			do
+				echo -n "${src_list[i]}\t"
+			done
+			echo "\n"
+			read rc
+
 		fi
 		local alias_name=$2
 		local exists=$(grep -c "^alias $alias_name=" $rc)
