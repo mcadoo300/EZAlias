@@ -65,27 +65,33 @@ elif [[ "$1" == "-r" ]]; then # remove alias
 	if [ $# -eq $remove_arg_count ]; then
 		# get alias source file
 		# get alias source file
+		local alias_name=$2
 		if [ ${#src_list[@]} -eq 1 ]; then
 			local rc=${src_list[@]} # bash and zsh have different indexing so @ is used
-			echo $rc
-		else
-			echo "Input file would you like to remove the alias from?"
-			for (( i = 1; i <= ${#src_list[@]}; i++))
-			do
-				echo -n "${src_list[i]}\t"
-			done
-			echo "\n"
-			read rc
+			local exists=$(grep -c "^alias $alias_name=" $rc)
+			if [ $exists -eq 0 ]; then
+				echo "Error: No alias found with that name"
+			else
+				echo "Removed the following alias:"
+				grep "^alias $alias_name=" $rc
+				grep -v "^alias $alias_name=" $rc > temp_file && mv temp_file $rc
+			fi
 
-		fi
-		local alias_name=$2
-		local exists=$(grep -c "^alias $alias_name=" $rc)
-		if [ $exists -eq 0 ]; then
-			echo "Error: No alias found with that name"
 		else
-			echo "Removed the following alias:"
-			grep "^alias $alias_name=" $rc
-			grep -v "^alias $alias_name=" $rc > temp_file && mv temp_file $rc
+			local i=1
+			local not_found=true
+			while [ $i -le ${#src_list[@]} ] && [ $not_found = true ]
+			do
+				echo "Searching file ${src_list[$i]}..."
+				local exists=$(grep -c "^alias $alias_name=" ${src_list[$i]})
+				if [ $exists -eq 1 ]; then
+					echo "Removed the following alias:"
+					grep "^alias $alias_name=" ${src_list[$i]}
+					grep -v "^alias $alias_name=" ${src_list[$i]} > temp_file && mv temp_file ${src_list[$i]}
+					not_found=false
+				fi
+				((i+=1))
+			done
 		fi
 	else
 		echo "Error: Invalid number of arguments passed.\nProper syntax: eza -r [ ALIAS ]"
