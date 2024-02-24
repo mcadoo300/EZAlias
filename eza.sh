@@ -18,24 +18,24 @@ if [ $# -eq 0 ]; then
 	echo "Error: No arguments were passed.\nExample: eza -a test \"echo 'this is a test' \" "
 elif [[ "$1" == "-a" || "$1" == "-am" ]]; then # add alias
 	if [ $# -eq $add_arg_count ]; then
-		# get alias source file
-		if [ ${#src_list[@]} -eq 1 ]; then
-			local rc=${src_list[@]} # bash and zsh have different indexing so @ is used
-			echo $rc
-		else
-			echo "Input file would you like to add the alias to?"
-			for (( i = 1; i <= ${#src_list[@]}; i++))
-			do
-				echo -n "${src_list[i]}\t"
-			done
-			echo "\n"
-			read rc
-
-		fi
+		
 		local alias_name=$2
 		local command=$3
 		if [[ $alias_name =~ $valid_alias ]]; then
-
+			# get alias source file
+			if [ ${#src_list[@]} -eq 1 ]; then
+				local rc=${src_list[@]} # bash and zsh have different indexing so @ is used
+				echo $rc
+			else
+				echo "Input file would you like to add the alias to?"
+				for (( i = 1; i <= ${#src_list[@]}; i++))
+				do
+					echo  "($i) ${src_list[i]}\t"
+				done
+				read rc_src
+				local rc=${src_list[$rc_src]}
+	
+			fi
 			local exists=$(grep -c "^alias $alias_name=" $rc)
 			if [ $exists -ne 0 ]; then
 				echo "Error: An alias with that name already exists:"
