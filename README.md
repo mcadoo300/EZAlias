@@ -16,15 +16,9 @@ If you would like to also use the manual page for this script, as well as create
 
 Example: `sudo ln eza.man /usr/local/man/man1/eza.1`
 
-You may also have to change the directory of the 'createman.sh' script within the `eza.sh` file (line 57).
+You may also have to change the variable which points to the 'createman.sh' script within the `eza.sh` file (line 9).
 
-`56: if [[ "$1" == "-am" ]]; then`
-
-`57: zsh /path/to/dir/createman.sh $alias_name`
-
-`58: fi`
-
->Note: The default location is `$HOME/ezalias/createman.sh`.
+>Note: The default location is `man_src=$HOME/ezalias/createman.sh`.
 
 
 > Note: The .man extension was an organizational decision and more info can be found under the 'Creating manual pages for your aliases' section. You may find that different aliases have different functionality and not all man pages go exactly into man1. For more information on standardized man page organization [you can refer to this page](https://man7.org/linux/man-pages/man7/man-pages.7.html).

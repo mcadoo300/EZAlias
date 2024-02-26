@@ -6,6 +6,10 @@ src2="$HOME/aliases/aliases_git"
 # add list of sources to src_list= ( $src1 $src2 ... )
 src_list=( $src1 $src2 )
 rc=$src1 # default for src1
+# if you plan on creating man pages for aliases
+# point man_src to location of createman.sh
+man_src=$HOME/ezalias/createman.sh
+
 
 ### GLOBAL VARIABLES ###
 # regex for validating alias name
@@ -31,7 +35,7 @@ function write_alias_to_file {
 		echo "alias $alias_name=\"$command\"" >> $rc
 		echo "alias created: $alias_name=\"$command\""
 		if [[ "$option" == "-am" ]]; then
-			zsh $HOME/ezalias/createman.sh $alias_name
+			zsh $man_src  $alias_name
 		fi
 	fi
 
