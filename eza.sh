@@ -73,7 +73,7 @@ function list_aliases {
 	done
 }
 
-
+# remove alias_name
 function remove_alias {
 	if [ ${#src_list[@]} -eq 1 ]; then
 		local exists=$(grep -c "^alias $alias_name=" $rc)
@@ -105,6 +105,47 @@ function remove_alias {
 	fi
 }
 
+function edit_alias {
+	if [ ${#src_list[@]} -eq 1 ]; then
+		rc=${src_list[@]} # bash and zsh have different indexing so @ is used
+		local exists=$(grep -c "^alias $alias_name=" $rc)
+		if [ $exists -eq 0 ]; then
+			echo "No alias found with that name"
+		else
+			echo "Edited the following alias:"
+			grep "^alias $alias_name=" $rc
+			grep -v "^alias $alias_name=" $rc > temp_file && mv temp_file $rc
+		fi
+		echo "alias $alias_name=\"$command\"" >> $rc
+		echo "New alias:"
+		grep "^alias $alias_name=" $rc
+	else
+		local i=1
+		local not_found=true
+		while [ $i -le ${#src_list[@]} ] && [ $not_found = true ]
+		do
+			echo "Searching file ${src_list[$i]}..."
+			local exists=$(grep -c "^alias $alias_name=" ${src_list[$i]})
+			if [ $exists -eq 1 ]; then
+				echo "Edited the following alias:"
+				grep "^alias $alias_name=" ${src_list[$i]}
+				grep -v "^alias $alias_name=" ${src_list[$i]} > temp_file && mv temp_file ${src_list[$i]}
+				not_found=false
+				echo "alias $alias_name=\"$command\"" >> ${src_list[$i]}
+				echo "New alias:"
+				grep "^alias $alias_name=" ${src_list[$i]}
+			fi
+			((i+=1))
+		done
+		if [ $not_found = true ]; then
+			echo "No alias found with that name."
+			get_alias_file
+			write_alias_to_file
+		fi
+	fi
+}
+
+
 # ensure at least one argument was passed
 if [ $arg_count -eq 0 ]; then
 	echo "Error: No arguments were passed.\nExample: eza -a test \"echo 'this is a test' \" "
@@ -130,46 +171,7 @@ elif [[ "$option" == "-r" ]]; then # remove alias
 	fi
 elif [[ "$option" == "-cc" ]]; then # change command
 	if [ $# -eq $edit_command_arg_count ]; then
-		# get alias source file
-		# get alias source file
-		local alias_name=$2
-		local command=$3
-		if [ ${#src_list[@]} -eq 1 ]; then
-			local rc=${src_list[@]} # bash and zsh have different indexing so @ is used
-			local exists=$(grep -c "^alias $alias_name=" $rc)
-			if [ $exists -eq 0 ]; then
-				echo "No alias found with that name"
-			else
-				echo "Edited the following alias:"
-				grep "^alias $alias_name=" $rc
-				grep -v "^alias $alias_name=" $rc > temp_file && mv temp_file $rc
-			fi
-			echo "alias $alias_name=\"$command\"" >> $rc
-			echo "New alias:"
-			grep "^alias $alias_name=" $rc
-
-		else
-			local i=1
-			local not_found=true
-			while [ $i -le ${#src_list[@]} ] && [ $not_found = true ]
-			do
-				echo "Searching file ${src_list[$i]}..."
-				local exists=$(grep -c "^alias $alias_name=" ${src_list[$i]})
-				if [ $exists -eq 1 ]; then
-					echo "Edited the following alias:"
-					grep "^alias $alias_name=" ${src_list[$i]}
-					grep -v "^alias $alias_name=" ${src_list[$i]} > temp_file && mv temp_file ${src_list[$i]}
-					not_found=false
-					echo "alias $alias_name=\"$command\"" >> ${src_list[$i]}
-					echo "New alias:"
-					grep "^alias $alias_name=" ${src_list[$i]}
-				fi
-				((i+=1))
-			done
-			if [ $not_found = true ]; then
-				echo "Error: Alias not found."
-			fi
-		fi
+		edit_alias
 	else
 		echo "Error: Invalid number of arguments pass.\n Proper syntax: eza -cc [ ALIAS ] [ COMMAND ]"
 	fi
