@@ -36,7 +36,7 @@ To add aliases use the option `zsh eza.sh -a yourAliasName "the command" `. I wo
 ## Listing aliases
 To list aliases you can use the command `eza -l`. This goes into your bashrc file and reads out all the lines that start with alias.
 ## Removing aliases
-To remove aliases use the command `eza -r alianName`.
+To remove aliases use the command `eza -r aliasName`.
 ## Editing existing aliases
 To **C**hange the **C**ommand of an existing alias use the command `eza -cc aliasToEdit "new command"`
 ## Creating manual pages for your alias
