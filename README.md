@@ -16,13 +16,13 @@ If you would like to also use the manual page for this script, as well as create
 
 Example: `sudo ln eza.man /usr/local/man/man1/eza.1`
 
-You may also have to change the directory of the 'createman.sh' script within the `eza.sh` file (line 28).
+You may also have to change the directory of the 'createman.sh' script within the `eza.sh` file (line 57).
 
-`27: if [[ "$1" == "-am" ]]; then`
+`56: if [[ "$1" == "-am" ]]; then`
 
-`28: zsh /path/to/dir/createman.sh $alias_name`
+`57: zsh /path/to/dir/createman.sh $alias_name`
 
-`29: fi`
+`58: fi`
 
 >Note: The default location is `$HOME/ezalias/createman.sh`.
 
