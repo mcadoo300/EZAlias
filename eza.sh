@@ -2,9 +2,9 @@
 ### CONFIG ### -> to be moved to sep config file later
 # directory where you keep your bash aliases
 src1="$HOME/.zshrc"
-src2="$HOME/aliases/aliases_git"
+#src2="$HOME/aliases/aliases_git"
 # add list of sources to src_list= ( $src1 $src2 ... )
-src_list=( $src1 $src2 )
+src_list=( $src1 )
 rc=$src1 # default for src1
 # if you plan on creating man pages for aliases
 # point man_src to location of createman.sh
