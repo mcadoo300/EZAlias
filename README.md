@@ -7,9 +7,9 @@ You will want to clone this repo and place it wherever you find it convenient.
 `git clone https://github.com/mcadoo300/EZAlias.git`
 ## Configuration
 You may need to change some file pathing depending on how you organize your aliases or depending on your shell.
-In `eza.sh` change the rc variable to point to the location of your aliases. By default the vairable is set to point at your `$HOME` directory and is set up for a z shell:
-`rc="$HOME/.zshrc"`
-> Note: It is possible to source aliases from different files. If this is the case you should point rc to wherever you store your aliases.
+In `eza.sh` change the src1 variable to point to the location of your aliases. By default the vairable is set to point at your `$HOME` directory and is set up for a z shell:
+`src1="$HOME/.zshrc"`
+> Note: It is possible to source aliases from different file(s). If this is the case you should point rc to wherever you store your aliases. If you do use multiple sources for aliases you want to add all sources to src_list [which only stores src1 by default]
 
 
 If you would like to also use the manual page for this script, as well as create some of your own, you will need to move (or create a symlink) to the `eza.man` file. This file (eza.man) should be moved to (or a link created in)  `/usr/local/man/man1/eza.1`. 

@@ -2,8 +2,9 @@
 # directory where you keep your bash aliases
 #rc="$HOME/.zshrc"
 src1="$HOME/.zshrc"
-src2="$HOME/aliases/aliases_git"
-src_list=( $src1 $src2 )
+#src2="$HOME/aliases/aliases_git"
+# add list of sources to src_list= ( $src1 $src2 ... )
+src_list=( $src1 )
 
 
 # regex for validating alias name
@@ -14,7 +15,7 @@ remove_arg_count=2
 edit_command_arg_count=3
 arg_count=$#
 # ensure at least one argument was passed
-if [ $# -eq 0 ]; then
+if [ $arg_count -eq 0 ]; then
 	echo "Error: No arguments were passed.\nExample: eza -a test \"echo 'this is a test' \" "
 elif [[ "$1" == "-a" || "$1" == "-am" ]]; then # add alias
 	if [ $# -eq $add_arg_count ]; then
@@ -27,13 +28,22 @@ elif [[ "$1" == "-a" || "$1" == "-am" ]]; then # add alias
 				local rc=${src_list[@]} # bash and zsh have different indexing so @ is used
 				echo $rc
 			else
-				echo "Input file would you like to add the alias to?"
-				for (( i = 1; i <= ${#src_list[@]}; i++))
+				local valid_input=false
+				while [ $valid_input = false ]
 				do
-					echo  "($i) ${src_list[i]}\t"
+					echo "Input file would you like to add the alias to?"
+					for (( i = 1; i <= ${#src_list[@]}; i++))
+					do
+						echo  "($i) ${src_list[i]}\t"
+					done
+					read rc_src
+					if [[ 0 -lt $rc_src ]] && [[ $rc_src -le ${#src_list[@]} ]]; then
+						local rc=${src_list[$rc_src]}
+						valid_input=true
+					else
+						echo "Please enter an integer between 1 and ${#src_list[@]}"
+					fi
 				done
-				read rc_src
-				local rc=${src_list[$rc_src]}
 	
 			fi
 			local exists=$(grep -c "^alias $alias_name=" $rc)
