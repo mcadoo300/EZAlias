@@ -9,7 +9,7 @@ You will want to clone this repo and place it wherever you find it convenient. T
 ## Configuration
 You may need to change some file pathing depending on how you organize your aliases, where you cloned this repo or depending on your shell. 
 ### Install location
-The `file_path` variable should point to the directory you cloned this repo into. By default: `file_path=$HOME`. You also need to change the config source within `eza.sh`. By default: `source $HOME/ezalias/config`, replace `$HOME` with directory you cloned the repo in.
+The `file_path` variable in the `config` file should point to the directory you cloned this repo into. By default: `file_path=$HOME`. You also need to change the config source within `eza.sh`. By default: `source $HOME/ezalias/config`, replace `$HOME` with directory you cloned the repo in.
 ### Alias source(s)
 In the `config` file change the `src1` variable to point to the location of your aliases. By default the vairable is set to point at your `$HOME` directory and is set up for a z shell:
 `src1="$HOME/.zshrc"`
@@ -26,7 +26,7 @@ As long as `$file_path` points to the install location you should be able to cre
 
 ## Adding aliases
 To add aliases use the option `zsh eza.sh -a yourAliasName "the command" `. I would recommend setting up an alias to call this script like so:
-`zsh eza.sh -a eza "zsh /path/to/eza.sh`
+`zsh eza.sh -a eza "zsh /path/to/eza.sh"`
 > Note: For all following points in the readme `eza` implies the command `zsh eza.sh `.
 ## Listing aliases
 To list aliases you can use the command `eza -l`. This goes into your bashrc file and reads out all the lines that start with alias.
