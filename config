@@ -1,0 +1,9 @@
+### list your alias sources ###
+src1="$HOME/.zshrc"
+#src2="$HOME/aliases/git
+#src3="$HOME/aliases/system
+src_list=( $src1 )
+rc=$src1
+
+# location of automated man creation script
+man_src=$HOME/ezalias/createman.sh

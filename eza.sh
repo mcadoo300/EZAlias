@@ -1,15 +1,6 @@
 #!/bin/zsh
-### CONFIG ### -> to be moved to sep config file later
-# directory where you keep your bash aliases
-src1="$HOME/.zshrc"
-#src2="$HOME/aliases/aliases_git"
-# add list of sources to src_list= ( $src1 $src2 ... )
-src_list=( $src1 )
-rc=$src1 # default for src1
-# if you plan on creating man pages for aliases
-# point man_src to location of createman.sh
-man_src=$HOME/ezalias/createman.sh
 
+source $HOME/ezalias/config
 
 ### GLOBAL VARIABLES ###
 # regex for validating alias name
@@ -18,6 +9,7 @@ valid_alias='^[a-zA-Z_][a-zA-Z0-9_]*$'
 add_arg_count=3
 remove_arg_count=2
 edit_command_arg_count=3
+
 ### ARGUMENTS ###
 arg_count=$#
 option=$1
@@ -73,7 +65,6 @@ function list_aliases {
 	do
 		echo "Aliases from $src:"
 		grep "^alias" $src
-		echo "\n"
 	done
 }
 
@@ -154,7 +145,7 @@ function edit_alias {
 if [ $arg_count -eq 0 ]; then
 	echo "Error: No arguments were passed.\nExample: eza -a test \"echo 'this is a test' \" "
 elif [[ "$option" == "-a" || "$option" == "-am" ]]; then # add alias
-	if [ $# -eq $add_arg_count ]; then
+	if [ $arg_count -eq $add_arg_count ]; then
 		if [[ $alias_name =~ $valid_alias ]]; then
 			get_alias_file
 			write_alias_to_file
@@ -168,13 +159,13 @@ elif [[ "$option" == "-a" || "$option" == "-am" ]]; then # add alias
 elif [[ "$option" == "-l" ]]; then # list aliases
 	list_aliases
 elif [[ "$option" == "-r" ]]; then # remove alias
-	if [ $# -eq $remove_arg_count ]; then
+	if [ $arg_count -eq $remove_arg_count ]; then
 		remove_alias
 	else
 		echo "Error: Invalid number of arguments passed.\nProper syntax: eza -r [ ALIAS ]"
 	fi
 elif [[ "$option" == "-cc" ]]; then # change command
-	if [ $# -eq $edit_command_arg_count ]; then
+	if [ $arg_count -eq $edit_command_arg_count ]; then
 		edit_alias
 	else
 		echo "Error: Invalid number of arguments pass.\n Proper syntax: eza -cc [ ALIAS ] [ COMMAND ]"
