@@ -1,6 +1,9 @@
 ### list your alias sources ###
+# install location
 file_path=$HOME
-src1="$file_path/.zshrc"
+
+# sources of aliases
+src1="$HOME/.zshrc"
 #src2="$HOME/aliases/git
 #src3="$HOME/aliases/system
 
