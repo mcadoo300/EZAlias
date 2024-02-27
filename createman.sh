@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+# source /path/to/ezalias/config
 source $HOME/ezalias/config
 
 touch $1.man

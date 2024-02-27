@@ -1,5 +1,5 @@
 #!/bin/zsh
-
+# source /path/to/ezalias/config
 source $HOME/ezalias/config
 
 ### GLOBAL VARIABLES ###
