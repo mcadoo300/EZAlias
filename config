@@ -13,4 +13,4 @@ src_list=( $src1 )
 rc=$src1
 
 # location of automated man creation script
-man_src=$file_path/ezalias/createman.sh
+man_src=$file_path/EZAlias/createman.sh

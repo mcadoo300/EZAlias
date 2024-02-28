@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # source /path/to/ezalias/config
-source $HOME/ezalias/config
+source $HOME/EZAlias/config
 
 touch $1.man
 sudo echo ".TH $1(1) " >> $1.man
@@ -21,8 +21,8 @@ sudo echo ".SH DESCRIPTION " >> $1.man
 echo "Enter a description of how to use your alias."
 read desc
 sudo echo "$desc" >> $1.man
-sudo mv ./$1.man $file_path/ezalias/$1.man
-sudo ln $file_path/ezalias/$1.man /usr/local/man/man1/$1.1
+sudo mv ./$1.man $file_path/EZAlias/$1.man
+sudo ln $file_path/EZAlias/$1.man /usr/local/man/man1/$1.1
 
 echo "You may now access your manual page by entering 'man $1'"
 

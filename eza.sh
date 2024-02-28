@@ -1,6 +1,6 @@
 #!/bin/zsh
 # source /path/to/ezalias/config
-source $HOME/ezalias/config
+source $HOME/EZAlias/config
 
 ### GLOBAL VARIABLES ###
 # regex for validating alias name
